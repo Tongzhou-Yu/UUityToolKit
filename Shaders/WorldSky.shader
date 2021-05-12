@@ -1,11 +1,12 @@
 ﻿// (c) 2020 Tongzhou Yu
 
-Shader "Custom/Sky"
+Shader "Portal/WorldSky"
 {
     Properties
     {
 		_MainTex("Texture", 2D) = "white" {}
-			[Enum(CompareFunction)] _StencilComp("Stencil Comp",Int) = 3
+		[Enum(CompareFunction)] _StencilComp("Stencil Comp",Int) = 3
+        _Ref("World", Int) = 1
     }
     SubShader
     {
@@ -17,7 +18,7 @@ Shader "Custom/Sky"
         Pass
         {
 						Stencil{
-			Ref 1
+			Ref[_Ref]
 			Comp[_StencilComp]
 		}
             CGPROGRAM
